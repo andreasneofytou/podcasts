@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:podcasts/models/episode.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -23,7 +24,12 @@ class _EpisodePageState extends State<EpisodePage> {
   }
 
   void initAsync() async {
-    await audioPlayer.setUrl(widget.episode.audio!);
+    await audioPlayer.setAudioSource(AudioSource.uri(
+        Uri.parse(widget.episode.audio!),
+        tag: MediaItem(
+            id: widget.episode.id!,
+            title: widget.episode.title!,
+            artUri: Uri.parse(widget.episode.image!))));
   }
 
   @override

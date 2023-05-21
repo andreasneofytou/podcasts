@@ -4,13 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:podcasts/pages/podcast_page.dart';
 import 'package:podcasts/view_models/home_view_model.dart';
 import 'package:podcasts/view_models/player_view_model.dart';
 import 'package:podcasts/view_models/podcast_view_model.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.neofytou.podcasts',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
   runApp(const Main());
 }
 
