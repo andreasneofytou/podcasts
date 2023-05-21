@@ -1,0 +1,10 @@
+{
+  "@@locale": "en",
+  "homeTabText": "Home",
+  "discoverTabText": "Discover",
+  "profileTabText": "Profile",
+  "appTitle": "Podcasts",
+  "@appTitle": {
+    "description": ""
+  }
+}
