@@ -5,7 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:podcasts/pages/podcast_page.dart';
+import 'package:podcasts/pages/discover_page.dart';
+import 'package:podcasts/pages/home_page.dart';
+import 'package:podcasts/pages/library_page.dart';
+import 'package:podcasts/pages/profile_page.dart';
 import 'package:podcasts/view_models/home_view_model.dart';
 import 'package:podcasts/view_models/player_view_model.dart';
 import 'package:podcasts/view_models/podcast_view_model.dart';
@@ -76,10 +79,10 @@ class MainPageBody extends StatefulWidget {
 class _MainPageBodyState extends State<MainPageBody> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
-    const PodcastPage(podcastId: '9d29eaece0e441cd80e89d9be5505a8b'),
-    const Center(
-      child: Text("Page 2"),
-    ),
+    const HomePage(),
+    const DiscoverPage(),
+    const LibraryPage(),
+    const ProfilePage()
   ];
 
   void _onItemTapped(int index) {
@@ -100,6 +103,12 @@ class _MainPageBodyState extends State<MainPageBody> {
           BottomNavigationBarItem(
               icon: const Icon(Icons.home),
               label: AppLocalizations.of(context)!.homeTabText),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.explore),
+              label: AppLocalizations.of(context)!.discoverTabText),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.home),
+              label: AppLocalizations.of(context)!.libraryTabText),
           BottomNavigationBarItem(
               icon: const Icon(Icons.person),
               label: AppLocalizations.of(context)!.profileTabText)

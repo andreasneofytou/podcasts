@@ -2,7 +2,10 @@
   "@@locale": "en",
   "homeTabText": "Home",
   "discoverTabText": "Discover",
+  "libraryTabText": "Library",
   "profileTabText": "Profile",
+  "noTitle": "No title",
+  "episodes": "Episodes",
   "appTitle": "Podcasts",
   "@appTitle": {
     "description": ""

@@ -19,7 +19,7 @@ class EpisodeItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.all(6),
+            margin: const EdgeInsets.only(right: 6),
             height: 75,
             width: 75,
             child: ClipRRect(

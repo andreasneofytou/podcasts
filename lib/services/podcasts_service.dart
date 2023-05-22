@@ -5,10 +5,10 @@ import 'package:http/http.dart' as http;
 import 'package:podcasts/models/podcast.dart';
 
 class PodcastsService {
-  static const baseUrl = 'localhost:3000';
+  static const baseUrl = 'podcasts.neofytou.com';
 
   Future<Podcast?> fetchPodcast(String podcastId) async {
-    final url = Uri.http(
+    final url = Uri.https(
         baseUrl, '/api/v2/podcasts/$podcastId', {'sort': 'recent_first'});
     final response = await http.get(url, headers: {});
 
