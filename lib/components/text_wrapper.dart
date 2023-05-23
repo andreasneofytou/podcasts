@@ -29,10 +29,10 @@ class _TextWrapperState extends State<TextWrapper>
               ))),
       isExpanded
           ? TextButton(
-              child: const Text('Read less'),
+              child: const Text('view less'),
               onPressed: () => setState(() => isExpanded = false))
           : TextButton(
-              child: const Text('Read more'),
+              child: const Text('view more'),
               onPressed: () => setState(() => isExpanded = true))
     ]);
   }

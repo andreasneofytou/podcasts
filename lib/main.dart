@@ -9,6 +9,7 @@ import 'package:podcasts/pages/discover_page.dart';
 import 'package:podcasts/pages/home_page.dart';
 import 'package:podcasts/pages/library_page.dart';
 import 'package:podcasts/pages/profile_page.dart';
+import 'package:podcasts/theme.dart';
 import 'package:podcasts/view_models/home_view_model.dart';
 import 'package:podcasts/view_models/player_view_model.dart';
 import 'package:podcasts/view_models/podcast_view_model.dart';
@@ -55,14 +56,12 @@ class _MainPageState extends State<MainPage> {
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            // GlobalMaterialLocalizations.delegate,
-          ], // important
+          localizationsDelegates: const [AppLocalizations.delegate],
           supportedLocales: AppLocalizations.supportedLocales,
           title: 'Podcasts',
           themeMode: ThemeMode.system,
-          theme: ThemeData(),
+          theme: ThemeData(
+              primarySwatch: const MaterialColor(0xff9513ff, mainColour)),
           darkTheme: ThemeData.dark(),
           home: const MainPageBody()),
     );
