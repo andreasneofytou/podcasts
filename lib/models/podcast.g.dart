@@ -8,23 +8,23 @@ part of 'podcast.dart';
 
 Podcast _$PodcastFromJson(Map<String, dynamic> json) => Podcast(
       json['id'] as String,
-      json['title'] as String,
-      json['publisher'] as String,
-      json['image'] as String,
-      json['thumbnail'] as String,
-      json['total_episodes'] as int,
-      json['audio_length_sec'] as int,
-      json['update_frequency_hours'] as int,
+      json['title'] as String?,
+      json['publisher'] as String?,
+      json['image'] as String?,
+      json['thumbnail'] as String?,
+      json['total_episodes'] as int?,
+      json['audio_length_sec'] as int?,
+      json['update_frequency_hours'] as int?,
       json['explicit_content'] as bool,
       json['description'] as String,
-      json['latest_pub_date_ms'] as int,
-      json['earliest_pub_date_ms'] as int,
-      json['next_episode_pub_date'] as int,
-      json['language'] as String,
-      json['country'] as String,
-      json['website'] as String,
-      (json['episodes'] as List<dynamic>)
-          .map((e) => Episode.fromJson(e as Map<String, dynamic>))
+      json['latest_pub_date_ms'] as int?,
+      json['earliest_pub_date_ms'] as int?,
+      json['next_episode_pub_date'] as int?,
+      json['language'] as String?,
+      json['country'] as String?,
+      json['website'] as String?,
+      (json['episodes'] as List<dynamic>?)
+          ?.map((e) => Episode.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

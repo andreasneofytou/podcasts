@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:podcasts/components/my_app_bar.dart';
 import 'package:podcasts/models/episode.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -51,12 +52,7 @@ class _PlayerPageState extends State<PlayerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.showTitle),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.black,
-      ),
+      appBar: myAppBar(context, title: widget.episode.title),
       body: SafeArea(
           child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -93,7 +89,7 @@ class _PlayerPageState extends State<PlayerPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    widget.showTitle!,
+                    widget.showTitle,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 15,
@@ -202,6 +198,7 @@ class _PlayerPageState extends State<PlayerPage> {
     } else if (audioPlayer.playing != true) {
       return IconButton(
         iconSize: iconSize,
+        // color: Theme.of(context).primaryColor,
         icon: const Icon(Icons.play_circle_fill),
         onPressed: audioPlayer.play,
       );

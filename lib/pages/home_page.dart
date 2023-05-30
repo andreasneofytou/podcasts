@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:podcasts/pages/podcast_page.dart';
+import 'package:podcasts/components/podcast_item.dart';
+import 'package:podcasts/view_models/home_view_model.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: TextButton(
-            child: const Text("Podcast page"),
-            onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const PodcastPage(
-                          podcastId: "9d29eaece0e441cd80e89d9be5505a8b",
-                        )))));
+    var model = context.watch<HomeViewModel>();
+    if (model.podcasts.isEmpty) {
+      model.fetchPodcasts();
+    }
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: model.podcasts.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                itemCount: model.podcasts.length,
+                itemBuilder: (context, index) {
+                  final podcast = model.podcasts[index];
+                  return PodcastItem(podcast: podcast);
+                },
+              ));
   }
 }

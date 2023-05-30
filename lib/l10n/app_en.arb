@@ -6,6 +6,15 @@
   "profileTabText": "Profile",
   "noTitle": "No title",
   "episodes": "Episodes",
+  "playEpisode": "Play",
+  "subscribe": "Subscribe",
+  "search": "Search",
+  "popularAndTrending": "Popular & Trending Authors",
+  "mostListened": "Most Listened Podcasts",
+  "recentSearches": "Recent Searches",
+  "resultsAppear": "Results will appear here",
+  "clearAll": "Clear All",
+  "seeAll": "See all",
   "appTitle": "Podcasts",
   "@appTitle": {
     "description": ""

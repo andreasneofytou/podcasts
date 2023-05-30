@@ -18,4 +18,26 @@ class PodcastsService {
 
     return null;
   }
+
+  Future<List<Podcast>> fetchBestPodcasts(
+      {int page = 1,
+      String region = 'us',
+      sort = 'recent_added_first',
+      safeMode = true}) async {
+    final url = Uri.https(baseUrl, '/api/v2/best_podcasts', {
+      'page': page.toString(),
+      'region': region,
+      'sort': sort,
+      'safe_mode': safeMode.toString()
+    });
+
+    final response = await http.get(url);
+
+    if (response.statusCode == HttpStatus.ok) {
+      return (json.decode(response.body)['podcasts'] as List)
+          .map((e) => Podcast.fromJson(e))
+          .toList();
+    }
+    return [];
+  }
 }

@@ -24,29 +24,29 @@ class Podcast {
       this.website,
       this.episodes);
   String id;
-  String title;
-  String publisher;
-  String image;
-  String thumbnail;
+  String? title;
+  String? publisher;
+  String? image;
+  String? thumbnail;
   @JsonKey(name: 'total_episodes')
-  int totalEpisodes;
+  int? totalEpisodes;
   @JsonKey(name: 'audio_length_sec')
-  int audioLengthInSecs;
+  int? audioLengthInSecs;
   @JsonKey(name: 'update_frequency_hours')
-  int updateFrequencyInHours;
+  int? updateFrequencyInHours;
   @JsonKey(name: 'explicit_content')
   bool isExplicitContent;
   String description;
   @JsonKey(name: 'latest_pub_date_ms')
-  int latestPubDate;
+  int? latestPubDate;
   @JsonKey(name: 'earliest_pub_date_ms')
-  int earliestPubDate;
+  int? earliestPubDate;
   @JsonKey(name: 'next_episode_pub_date')
-  int nextEpisodePubDate;
-  String language;
-  String country;
-  String website;
-  List<Episode> episodes;
+  int? nextEpisodePubDate;
+  String? language;
+  String? country;
+  String? website;
+  List<Episode>? episodes = [];
 
   factory Podcast.fromJson(Map<String, dynamic> json) =>
       _$PodcastFromJson(json);

@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 const Map<int, Color> mainColour = {
   50: Color.fromRGBO(248, 240, 255, 1),
@@ -24,3 +24,11 @@ const Map<int, Color> secondaryColour = {
   800: Color.fromRGBO(158, 130, 0, 1),
   900: Color.fromRGBO(128, 105, 0, 1),
 };
+
+final ColorScheme defaultLightColorScheme = ColorScheme.fromSwatch(
+    primarySwatch: const MaterialColor(0xff9513ff, mainColour),
+    cardColor: mainColour[300],
+    brightness: Brightness.light);
+final ColorScheme defaultDarkColorScheme = ColorScheme.fromSwatch(
+    primarySwatch: const MaterialColor(0xff9513ff, mainColour),
+    brightness: Brightness.dark);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class TextWrapper extends StatefulWidget {
   const TextWrapper({Key? key, required this.text}) : super(key: key);
@@ -14,26 +15,24 @@ class _TextWrapperState extends State<TextWrapper>
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-      AnimatedSize(
-          duration: const Duration(milliseconds: 300),
+    return AnimatedSize(
+        duration: const Duration(milliseconds: 300),
+        child: InkWell(
+          onTap: () => setState(() => isExpanded = !isExpanded),
           child: ConstrainedBox(
-              constraints: isExpanded
-                  ? const BoxConstraints()
-                  : const BoxConstraints(maxHeight: 70),
-              child: Text(
-                widget.text,
-                style: const TextStyle(fontSize: 16),
-                softWrap: true,
-                overflow: TextOverflow.fade,
-              ))),
-      isExpanded
-          ? TextButton(
-              child: const Text('view less'),
-              onPressed: () => setState(() => isExpanded = false))
-          : TextButton(
-              child: const Text('view more'),
-              onPressed: () => setState(() => isExpanded = true))
-    ]);
+            constraints: isExpanded
+                ? const BoxConstraints()
+                : const BoxConstraints(maxHeight: 70),
+            child: Html(
+              data: widget.text,
+            ),
+            // Text(
+            //   widget.text,
+            //   style: const TextStyle(fontSize: 16),
+            //   softWrap: true,
+            //   overflow: TextOverflow.fade,
+            // )
+          ),
+        ));
   }
 }

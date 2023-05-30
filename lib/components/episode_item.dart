@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:podcasts/models/episode.dart';
 
@@ -15,25 +16,40 @@ class EpisodeItem extends StatelessWidget {
     return InkWell(
       onTap: onTap as void Function()?,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-                "${DateFormat.MMMd(Platform.localeName).format(DateTime.fromMillisecondsSinceEpoch(episode.pubDateInMs!))} | ${Duration(seconds: episode.audioLength!).toString().split('.').first}"),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  episode.title ?? 'No title',
-                  textAlign: TextAlign.left,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(
+                "${DateFormat.MMMd(Platform.localeName).format(DateTime.fromMillisecondsSinceEpoch(episode.pubDateInMs!))} | ${Duration(seconds: episode.audioLength!).toString().split('.').first} mins",
+              ),
             ),
+            Text(
+              episode.title ?? 'No title',
+              textAlign: TextAlign.left,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Row(
+                children: [
+                  FilledButton.icon(
+                      icon: const Icon(Icons.play_arrow),
+                      onPressed: () {},
+                      label: Text(AppLocalizations.of(context)!.playEpisode)),
+                  IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.playlist_add)),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.download_outlined)),
+                ],
+              ),
+            )
           ],
         ),
       ),
