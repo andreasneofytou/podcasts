@@ -16,7 +16,7 @@ Podcast _$PodcastFromJson(Map<String, dynamic> json) => Podcast(
       json['audio_length_sec'] as int?,
       json['update_frequency_hours'] as int?,
       json['explicit_content'] as bool,
-      json['description'] as String,
+      json['description'] as String?,
       json['latest_pub_date_ms'] as int?,
       json['earliest_pub_date_ms'] as int?,
       json['next_episode_pub_date'] as int?,
@@ -26,12 +26,22 @@ Podcast _$PodcastFromJson(Map<String, dynamic> json) => Podcast(
       (json['episodes'] as List<dynamic>?)
           ?.map((e) => Episode.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )
+      ..titleHighlighted = json['title_highlighted'] as String?
+      ..titleOriginal = json['title_original'] as String?
+      ..publisherHighlighted = json['publisher_highlighted'] as String?
+      ..publisherOriginal = json['publisher_original'] as String?
+      ..descriptionHighlighted = json['description_highlighted'] as String?
+      ..descriptionOriginal = json['description_original'] as String?;
 
 Map<String, dynamic> _$PodcastToJson(Podcast instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'title_highlighted': instance.titleHighlighted,
+      'title_original': instance.titleOriginal,
       'publisher': instance.publisher,
+      'publisher_highlighted': instance.publisherHighlighted,
+      'publisher_original': instance.publisherOriginal,
       'image': instance.image,
       'thumbnail': instance.thumbnail,
       'total_episodes': instance.totalEpisodes,
@@ -39,6 +49,8 @@ Map<String, dynamic> _$PodcastToJson(Podcast instance) => <String, dynamic>{
       'update_frequency_hours': instance.updateFrequencyInHours,
       'explicit_content': instance.isExplicitContent,
       'description': instance.description,
+      'description_highlighted': instance.descriptionHighlighted,
+      'description_original': instance.descriptionOriginal,
       'latest_pub_date_ms': instance.latestPubDate,
       'earliest_pub_date_ms': instance.earliestPubDate,
       'next_episode_pub_date': instance.nextEpisodePubDate,

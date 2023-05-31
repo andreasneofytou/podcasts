@@ -25,7 +25,15 @@ class Podcast {
       this.episodes);
   String id;
   String? title;
+  @JsonKey(name: 'title_highlighted')
+  String? titleHighlighted;
+  @JsonKey(name: 'title_original')
+  String? titleOriginal;
   String? publisher;
+  @JsonKey(name: 'publisher_highlighted')
+  String? publisherHighlighted;
+  @JsonKey(name: 'publisher_original')
+  String? publisherOriginal;
   String? image;
   String? thumbnail;
   @JsonKey(name: 'total_episodes')
@@ -36,7 +44,11 @@ class Podcast {
   int? updateFrequencyInHours;
   @JsonKey(name: 'explicit_content')
   bool isExplicitContent;
-  String description;
+  String? description;
+  @JsonKey(name: 'description_highlighted')
+  String? descriptionHighlighted;
+  @JsonKey(name: 'description_original')
+  String? descriptionOriginal;
   @JsonKey(name: 'latest_pub_date_ms')
   int? latestPubDate;
   @JsonKey(name: 'earliest_pub_date_ms')

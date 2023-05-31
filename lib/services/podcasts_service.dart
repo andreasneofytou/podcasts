@@ -40,4 +40,20 @@ class PodcastsService {
     }
     return [];
   }
+
+  Future<List<Podcast>> searchPodcasts({required String term}) async {
+    final url = Uri.https(baseUrl, '/api/v2/search', {
+      'q': term,
+      'type': 'podcast',
+      'only_in': 'title,description,author,audio'
+    });
+
+    final response = await http.get(url);
+    if (response.statusCode == HttpStatus.ok) {
+      return (json.decode(response.body)['results'] as List)
+          .map((e) => Podcast.fromJson(e))
+          .toList();
+    }
+    return [];
+  }
 }

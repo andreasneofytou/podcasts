@@ -20,7 +20,11 @@ class HomePage extends StatelessWidget {
                 itemCount: model.podcasts.length,
                 itemBuilder: (context, index) {
                   final podcast = model.podcasts[index];
-                  return PodcastItem(podcast: podcast);
+                  final double padding = index == 0 ? 8.0 : 0;
+                  return Padding(
+                    padding: EdgeInsets.only(top: padding),
+                    child: PodcastItem(podcast: podcast),
+                  );
                 },
               ));
   }
