@@ -79,6 +79,8 @@ class _PlayerPageState extends State<PlayerPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     widget.episode.title!,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 20,

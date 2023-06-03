@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -17,11 +18,16 @@ import 'package:podcasts/view_models/player_view_model.dart';
 import 'package:podcasts/view_models/podcast_view_model.dart';
 import 'package:provider/provider.dart';
 
+import 'firebase_options.dart';
+
 Future<void> main() async {
   await JustAudioBackground.init(
     androidNotificationChannelId: 'com.neofytou.podcasts',
     androidNotificationChannelName: 'Audio playback',
     androidNotificationOngoing: true,
+  );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const Main());
 }
