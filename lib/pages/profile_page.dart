@@ -1,10 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:podcasts/components/my_app_bar.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: myAppBar(context),
+      body: Center(
+          child: FilledButton(
+        child: const Text('Sign out'),
+        onPressed: () {
+          _auth.signOut();
+        },
+      )),
+    );
   }
 }

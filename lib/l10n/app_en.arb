@@ -15,6 +15,14 @@
   "resultsAppear": "Results will appear here",
   "clearAll": "Clear All",
   "seeAll": "See all",
+  "loginTitle": "Login to Your Account",
+  "usernameTitle": "Username",
+  "passTitle": "Password",
+  "login": "Log in",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "signUpTitle": "Create Your Account",
+  "alreadyHaveAccount": "Already have account? Login here",
   "appTitle": "Podcasts",
   "@appTitle": {
     "description": ""

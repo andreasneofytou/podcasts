@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:podcasts/pages/discover_page.dart';
 import 'package:podcasts/pages/home_page.dart';
+import 'package:podcasts/pages/landing_page.dart';
 import 'package:podcasts/pages/library_page.dart';
 import 'package:podcasts/pages/profile_page.dart';
 import 'package:podcasts/theme.dart';
@@ -29,6 +31,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const Main());
 }
 
@@ -62,6 +65,9 @@ class _MainPageState extends State<MainPage> {
           ChangeNotifierProvider(create: (_) => PodcastViewModel()),
           ChangeNotifierProvider(create: (_) => PlayerViewModel()),
           ChangeNotifierProvider(create: (_) => DiscoverViewModel()),
+          StreamProvider<User?>.value(
+              value: FirebaseAuth.instance.authStateChanges(),
+              initialData: null)
         ],
         child:
             DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
@@ -97,7 +103,7 @@ class _MainPageBodyState extends State<MainPageBody> {
     const HomePage(),
     const DiscoverPage(),
     const LibraryPage(),
-    const ProfilePage()
+    ProfilePage()
   ];
 
   void _onItemTapped(int index) {
@@ -108,32 +114,33 @@ class _MainPageBodyState extends State<MainPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.appTitle),
-      ),
-      resizeToAvoidBottomInset: false,
-      body: IndexedStack(index: _selectedIndex, children: _pages),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.home),
-              label: AppLocalizations.of(context)!.homeTabText),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.explore),
-              label: AppLocalizations.of(context)!.discoverTabText),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.library_books),
-              label: AppLocalizations.of(context)!.libraryTabText),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.person),
-              label: AppLocalizations.of(context)!.profileTabText)
-        ],
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
-    );
+    var user = Provider.of<User?>(context);
+    return user == null
+        ? const LandingPage()
+        : Scaffold(
+            appBar: AppBar(
+              title: Text(AppLocalizations.of(context)!.appTitle),
+            ),
+            resizeToAvoidBottomInset: false,
+            body: IndexedStack(index: _selectedIndex, children: _pages),
+            bottomNavigationBar: NavigationBar(
+              destinations: [
+                NavigationDestination(
+                    icon: const Icon(Icons.home),
+                    label: AppLocalizations.of(context)!.homeTabText),
+                NavigationDestination(
+                    icon: const Icon(Icons.explore),
+                    label: AppLocalizations.of(context)!.discoverTabText),
+                NavigationDestination(
+                    icon: const Icon(Icons.library_books),
+                    label: AppLocalizations.of(context)!.libraryTabText),
+                NavigationDestination(
+                    icon: const Icon(Icons.person),
+                    label: AppLocalizations.of(context)!.profileTabText)
+              ],
+              selectedIndex: _selectedIndex,
+              onDestinationSelected: _onItemTapped,
+            ),
+          );
   }
 }
