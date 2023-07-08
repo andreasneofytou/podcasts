@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:podcasts/components/my_app_bar.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -9,7 +8,6 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(context),
       body: Center(
           child: FilledButton(
         child: const Text('Sign out'),

@@ -66,6 +66,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
     if (model.trendingPodcasts.isEmpty) {
       model.fetchTrendingPodcasts();
     }
+    if (query.isNotEmpty) {
+      model.searchPodcasts(query: query);
+    }
     return Column(children: getBody(model));
   }
 
@@ -193,7 +196,21 @@ class _DiscoverPageState extends State<DiscoverPage> {
   Widget getResults(DiscoverViewModel model) {
     return Expanded(
         flex: 1,
-        child:
-            Center(child: Text(AppLocalizations.of(context)!.resultsAppear)));
+        child: model.searchResults.isEmpty
+            ? Center(child: Text(AppLocalizations.of(context)!.resultsAppear))
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: ListView.separated(
+                  itemCount: model.searchResults.length,
+                  itemBuilder: (context, index) {
+                    return PodcastItem(podcast: model.searchResults[index]);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const Divider(
+                      thickness: 1,
+                    );
+                  },
+                ),
+              ));
   }
 }

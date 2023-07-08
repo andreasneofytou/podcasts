@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:219497565598:android:ecca4c84e2ef82fe4fda8f',
     messagingSenderId: '219497565598',
     projectId: 'neocasts',
+    databaseURL: 'https://neocasts-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'neocasts.appspot.com',
   );
 
@@ -62,6 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:219497565598:ios:0b12186951ffb9974fda8f',
     messagingSenderId: '219497565598',
     projectId: 'neocasts',
+    databaseURL: 'https://neocasts-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'neocasts.appspot.com',
     iosClientId: '219497565598-f640mqn6buefm68kk53rr1vt9oh8gdv7.apps.googleusercontent.com',
     iosBundleId: 'com.neofytou.podcasts',

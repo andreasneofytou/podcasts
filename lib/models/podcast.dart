@@ -3,7 +3,7 @@ import 'package:podcasts/models/episode.dart';
 
 part 'podcast.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Podcast {
   Podcast(
       this.id,

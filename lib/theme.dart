@@ -25,10 +25,7 @@ const Map<int, Color> secondaryColour = {
   900: Color.fromRGBO(128, 105, 0, 1),
 };
 
-final ColorScheme defaultLightColorScheme = ColorScheme.fromSwatch(
-    primarySwatch: const MaterialColor(0xff9513ff, mainColour),
-    cardColor: mainColour[300],
-    brightness: Brightness.light);
-final ColorScheme defaultDarkColorScheme = ColorScheme.fromSwatch(
-    primarySwatch: const MaterialColor(0xff9513ff, mainColour),
-    brightness: Brightness.dark);
+final ColorScheme defaultLightColorScheme = ColorScheme.fromSeed(
+    seedColor: mainColour[500]!, brightness: Brightness.light);
+final ColorScheme defaultDarkColorScheme = ColorScheme.fromSeed(
+    seedColor: mainColour[500]!, brightness: Brightness.dark);

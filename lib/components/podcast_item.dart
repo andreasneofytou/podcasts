@@ -44,7 +44,9 @@ class PodcastItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        podcast.title ?? AppLocalizations.of(context)!.noTitle,
+                        podcast.title ??
+                            podcast.titleOriginal ??
+                            AppLocalizations.of(context)!.noTitle,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),

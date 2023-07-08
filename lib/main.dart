@@ -16,6 +16,7 @@ import 'package:podcasts/pages/profile_page.dart';
 import 'package:podcasts/theme.dart';
 import 'package:podcasts/view_models/discover_view_model.dart';
 import 'package:podcasts/view_models/home_view_model.dart';
+import 'package:podcasts/view_models/library_view_model.dart';
 import 'package:podcasts/view_models/player_view_model.dart';
 import 'package:podcasts/view_models/podcast_view_model.dart';
 import 'package:provider/provider.dart';
@@ -65,6 +66,7 @@ class _MainPageState extends State<MainPage> {
           ChangeNotifierProvider(create: (_) => PodcastViewModel()),
           ChangeNotifierProvider(create: (_) => PlayerViewModel()),
           ChangeNotifierProvider(create: (_) => DiscoverViewModel()),
+          ChangeNotifierProvider(create: (_) => LibraryViewModel()),
           StreamProvider<User?>.value(
               value: FirebaseAuth.instance.authStateChanges(),
               initialData: null)

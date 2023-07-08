@@ -5,6 +5,7 @@ import 'package:podcasts/components/episode_item.dart';
 import 'package:podcasts/components/my_app_bar.dart';
 import 'package:podcasts/models/podcast.dart';
 import 'package:podcasts/pages/player_page.dart';
+import 'package:podcasts/view_models/library_view_model.dart';
 import 'package:podcasts/view_models/podcast_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -76,7 +77,11 @@ class PodcastPage extends StatelessWidget {
                               flex: 4,
                               child: FilledButton.icon(
                                   icon: const Icon(Icons.add),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Provider.of<LibraryViewModel>(context,
+                                            listen: false)
+                                        .subscribePodcast(podcast);
+                                  },
                                   label: Text(
                                       AppLocalizations.of(context)!.subscribe)),
                             ),

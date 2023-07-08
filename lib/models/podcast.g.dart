@@ -57,5 +57,5 @@ Map<String, dynamic> _$PodcastToJson(Podcast instance) => <String, dynamic>{
       'language': instance.language,
       'country': instance.country,
       'website': instance.website,
-      'episodes': instance.episodes,
+      'episodes': instance.episodes?.map((e) => e.toJson()).toList(),
     };
